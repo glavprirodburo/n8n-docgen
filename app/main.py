@@ -1,12 +1,11 @@
-FROM python:3.11-slim
+from fastapi import FastAPI
 
-WORKDIR /app
+app = FastAPI()
 
-COPY ./app/requirements.txt ./requirements.txt
-COPY ./app/main.py ./main.py
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+@app.get("/ping")
+def ping():
+    return {"ping": "pong"}

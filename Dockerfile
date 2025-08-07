@@ -2,10 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY ./app/requirements.txt ./requirements.txt
-COPY ./app/main.py ./main.py
+COPY ./app ./app  # <== копируем всю папку app
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r app/requirements.txt
 
 EXPOSE 8000
 
